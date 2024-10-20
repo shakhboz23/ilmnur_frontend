@@ -1,0 +1,204 @@
+$black_24: #242424;
+$C00: #000000;
+$orange: #ff852e;
+$white: #ffffff;
+$C92: #929292;
+$C40: #40e746;
+$C66: #666666;
+$CAB: #ababac;
+$CFF3: #fff3eb;
+$CF5: #f5f5f5;
+$CF9: #f9f9f9;
+$CE2: #e2e2e2;
+$CF2: #F2F2F2;
+$CEE: #eeeeee;
+$CEF: #ef5a39;
+$C45: #434343;
+$C55: #555555;
+$C99: #999999;
+$CED: #ededed;
+$CAF: #afafaf;
+$CE5: #e5e5e5;
+$CEEB: #eeb627;
+$CB3: #b3b3b3;
+$C20: #2072f2;
+$C4D: #4d4d4d;
+$C8D: #8d8d8d;
+$CF23: #f23636;
+$C43: #434343;
+$CED: #ededed;
+$CF6: #F6F6F6;
+$C32: #323232;
+$CCC: #CCCCCC;
+$C42: #424242;
+$CBB: #BBBBBB;
+
+.black_24 {
+  color: $black_24;
+}
+
+.bg_black_24 {
+  background: $black_24;
+}
+
+.orange {
+  color: $orange;
+}
+
+.bg_orange {
+  background: $orange;
+}
+
+._c00 {
+  color: $C00;
+}
+
+.white {
+  color: $white;
+}
+
+.bg_white {
+  background: $white;
+}
+
+._c43 {
+  color: $C43;
+}
+
+._c92 {
+  color: $C92;
+}
+
+._c32 {
+  color: $C32;
+}
+
+._c40 {
+  color: $C40;
+}
+
+._c99 {
+  color: $C99;
+}
+
+._cb3 {
+  color: $CB3;
+}
+
+._c66 {
+  color: $C66;
+}
+
+._ccc {
+  color: $CCC;
+}
+
+._c42 {
+  color: $C42;
+}
+
+._cbb {
+  color: #CBB;
+}
+
+._cab {
+  color: $CAB;
+}
+
+._c4d {
+  color: $C4D;
+}
+
+._caf {
+  color: $CAF;
+}
+
+._c45 {
+  color: $C45;
+}
+
+._c55 {
+  color: $C55;
+}
+
+._ceeb {
+  color: $CEEB;
+}
+
+._c24 {
+  color: $black_24;
+}
+
+._c20 {
+  color: $C20;
+}
+
+.b_cf23 {
+  background: $CF23;
+}
+
+.b_cf9 {
+  background: $CF9;
+}
+
+.b_cee {
+  background: $CEE;
+}
+
+.b_cfe {
+  background: $CEF;
+}
+
+.b_c40 {
+  background: $C40;
+}
+
+.b_cff3 {
+  background: $CFF3;
+}
+
+.b_cf5 {
+  background: $CF5;
+}
+
+.b_cf6 {
+  background: $CF6;
+}
+
+.b_cf2 {
+  background: $CF2;
+}
+
+.b_ce5 {
+  background: $CE5;
+}
+
+.b_cfe2 {
+  background: $CE2;
+}
+
+.border_ced {
+  border: 1px solid $CED;
+}
+
+.border_c8d {
+  border: 1px solid $C8D;
+}
+
+.border_orange {
+  border: 1px solid $orange;
+}
+
+.border_cedbottom {
+  border-bottom: 1px solid $CED;
+}
+
+.md_border_c8d {
+  border: 1px solid $CED;
+}
+
+@media (min-width: 768px) {
+  .md_border_c8d {
+    border: 1px solid $C8D;
+  }
+}

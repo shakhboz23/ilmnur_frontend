@@ -1,0 +1,29 @@
+@import "./_colors.scss";
+
+.el-tabs__active-bar {
+  background: $orange !important;
+  height: 3px !important;
+  border-radius: 50px !important;
+}
+
+.is-active {
+  color: $orange !important;
+  font-weight: 500 !important;
+}
+
+.el-tabs__nav-wrap:after {
+  display: none !important;
+}
+
+.el-progress__text {
+  display: none !important;
+}
+
+.class_progress .el-progress-bar__inner {
+  background: $orange !important;
+}
+
+.class_progress .el-progress-bar__outer {
+  height: 4px !important;
+  background: $CF9 !important;
+}

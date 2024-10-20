@@ -1,0 +1,185 @@
+@import "./_colors.scss";
+
+// display-none
+.ant-modal-footer {
+  display: none !important;
+}
+
+// tabs
+.ant-tabs-nav-list * {
+  font-size: 16px;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  height: 3px !important;
+  border-radius: 3px 3px 0 0 !important;
+  background: $orange !important;
+}
+
+:where(.css-19yxfbp).ant-picker {
+  border: none !important;
+}
+
+.ant-tabs-nav-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ant-tabs-tab {
+  max-width: fit-content;
+}
+
+//data picker
+.ant-picker {
+  padding: 0 12px !important;
+
+  * {
+    ::placeholder {
+      color: #929292 !important;
+    }
+
+    font-size: 16px !important;
+  }
+}
+
+:where(.css-dev-only-do-not-override-19yxfbp).ant-picker {
+  border: 0;
+  box-shadow: none;
+}
+
+.ant-progress-inner {
+  height: 92px !important;
+  width: 92px !important;
+
+  * {
+    stroke-width: 2px !important;
+  }
+}
+
+.ant-progress-text {
+  display: none !important;
+}
+
+.ant-progress-circle-path {
+  stroke: $C40 !important;
+}
+
+.ant-modal-close {
+  display: none !important;
+}
+
+.ant-select-selector {
+  height: 50px !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.sr_12 {
+  border-radius: 12px !important;
+}
+
+.test_arrow {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  width: 210px;
+  border: 1px solid #ededed;
+  .ant-select-selector {
+    height: 44px !important;
+    z-index: 900;
+    margin-right: 10px !important;
+    width: 165px !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .ant-select-arrow {
+    min-height: 47px !important;
+    margin-right: -11px;
+    top: 4px;
+  }
+}
+
+// collapse
+// .aside {
+.ant-collapse-expand-icon {
+  display: none !important;
+}
+.ant-collapse-header,
+.ant-collapse-content-box {
+  padding: 0 !important;
+}
+// }
+
+.users_tabs .ant-tabs-nav-list {
+  justify-content: start !important;
+  width: auto !important;
+}
+
+.home_page {
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .ant-collapse-item {
+    border: none !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 2px #00000026;
+  }
+}
+
+.reyting_select {
+  .ant-select-selector {
+    height: 40px !important;
+    border: none !important;
+    background: $CF5 !important;
+    box-shadow: none !important;
+    padding: 0 12px !important;
+    * {
+      color: #555555 !important;
+    }
+  }
+}
+
+.lessons_view {
+  .ant-tabs-nav {
+    margin: 0 !important;
+  }
+}
+
+.ant-input-affix-wrapper {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #cccccc !important;
+  input {
+    margin-top: -2px !important;
+    background: transparent !important;
+  }
+}
+
+.ant-tooltip-inner,
+.ant-tooltip-arrow::before {
+  background: white !important;
+}
+
+.ant-tooltip .ant-tooltip-inner {
+  padding: 16px !important;
+}
+
+.ant-tooltip-inner {
+  margin-top: -20px !important;
+}
+
+.ant-tooltip-arrow {
+  margin-top: 1px !important;
+}
+
+.ant-switch-inner {
+  background: $CF2;
+  border: none !important;
+}
+
+.ant-switch-checked ::before {
+  background: $C20 !important;
+}

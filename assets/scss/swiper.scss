@@ -1,0 +1,40 @@
+//slider register
+.swiper-cube .swiper-cube-shadow:before {
+    background: none !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #000000 !important;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}
+
+.ant-picker-clear {
+    display: none;
+}
+
+.lessons_view .swiper {
+    overflow: visible !important;
+}
+
+// .swiper-pagination {
+//     height: 0;
+//     width: 0;
+//     overflow: hidden !important;
+// }
+
+.welcome {
+    .swiper {
+        overflow: visible !important;
+    }
+}
+
+.swiper-pagination {
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}

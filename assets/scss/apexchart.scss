@@ -1,0 +1,15 @@
+
+.apexcharts-grid-borders,
+.apexcharts-grid,
+.apexcharts-xaxis-tick {
+  display: none;
+}
+
+.apexcharts-tooltip {
+  box-shadow: none !important;
+  background: transparent;
+  overflow: visible !important;
+  /* top: 50% !important;
+  left: 50% !important;  */
+  transform: translate(500%, -20%) !important;
+}

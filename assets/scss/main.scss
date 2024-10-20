@@ -1,0 +1,423 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./_colors.scss";
+@import "./antdv.scss";
+@import "./element_plus.scss";
+@import "./swiper.scss";
+@import "./apexchart.scss";
+@import "./editor.scss";
+
+@font-face {
+  font-family: "SFProTextBold";
+  src: url("../fonts/SFProText-Bold.ttf") format("ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SFProTextSemiBold";
+  src: url("../fonts/SFProText-Semibold.ttf") format("ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SFProTextMedium";
+  src: url("../fonts/SFProText-Medium.ttf") format("ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SFProText";
+  src: url("../fonts/SFProText-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+html,
+body {
+  background: #f5f5f7;
+  overflow: hidden;
+}
+
+*,
+pre,
+.cld-video-player {
+  line-height: 150%;
+  font-family: "SFProText";
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid $CCC;
+  outline: none !important;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.login_btn {
+  height: 50px;
+  min-width: 200px;
+  padding: 0 36px;
+  background: $orange;
+  color: $white;
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+.register_btn {
+  height: 50px;
+  width: 200px;
+  border: 1px solid $CBB;
+  color: $black_24;
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+.full_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification {
+  background: red;
+  color: white;
+}
+
+.font-medium {
+  font-family: "SFProTextMedium";
+}
+
+.font-semibold {
+  font-family: "SFProTextSemiBold";
+}
+
+.font-bold {
+  font-family: "SFProTextBold";
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background: #d9d9d9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $orange;
+  border-radius: 10px;
+}
+
+.home_subjects * {
+  ::-webkit-scrollbar-thumb {
+    background: $C99;
+    border-radius: 10px;
+  }
+
+  .ant-select-selector {
+    background: transparent !important;
+  }
+}
+
+.sidebar .tabs,
+.sidebar_scroll {
+  overflow-x: auto !important;
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
+}
+
+* {
+  scroll-snap-type: x mandatory;
+  --tw-scroll-snap-strictness: none !important;
+}
+
+.text-md {
+  font-size: 16px;
+}
+
+input,
+textarea {
+  height: 50px !important;
+  border-radius: 12px;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+  outline: none;
+  padding: 12px;
+  display: block;
+  width: 100%;
+  resize: none;
+
+  ::placeholder {
+    color: #686767;
+  }
+}
+
+#caption {
+  height: 24px !important;
+}
+
+.shadow_message {
+  box-shadow: 0px 1px 1px #00000026;
+}
+
+.lesson_shadow {
+  box-shadow: 0 16px 40px #0000000a;
+}
+
+.class_shadow {
+  box-shadow: 0 8px 20px #0000000a;
+}
+
+.subject_shadow {
+  box-shadow: 0 16px 40px #00000005;
+}
+
+.home_card_shadow {
+  box-shadow: 0 1px 2px #00000026;
+}
+
+.caret_color {
+  caret-color: $orange;
+  caret-shape: block;
+}
+
+.full_flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.border-l-3 {
+  border-radius: 16px 16px 16px 0;
+}
+
+.border-r-3 {
+  border-radius: 16px 16px 0 16px;
+}
+
+.r_10 {
+  border-radius: 10px;
+}
+
+.r_16 {
+  border-radius: 16px;
+}
+
+.r_8 {
+  border-radius: 8px;
+}
+
+// .page-enter-active,
+// .page-leave-active {
+//   transition: all 0.5s;
+// }
+// .page-enter-from,
+// .page-leave-to {
+//   opacity: 50%;
+//   filter: blur(1rem);
+//   * {
+//     color: $orange;
+//   }
+//   transform: translateY(-100%);
+// }
+
+// recorder animation
+.recorder {
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-content: center;
+  color: white;
+  text-shadow: 0 1px 0 #000;
+
+  --border-angle: 0turn; // For animation.
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+
+  border: solid 5px transparent;
+  border-radius: 50%;
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  background:
+        // padding-box clip this background in to the overall element except the border.
+    var(--main-bg) padding-box,
+    // border-box extends this background to the border space
+    var(--gradient-border) border-box,
+    // Duplicate main background to fill in behind the gradient border. You can remove this if you want the border to extend "outside" the box background.
+    var(--main-bg) border-box;
+
+  background-position: center center;
+
+  animation: bg-spin 3s linear infinite;
+
+  @keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+
+  // &:hover {
+  //     animation-play-state: paused;
+  // }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+.editor img {
+  display: inline-block;
+}
+
+.vjs-control-bar {
+  align-items: center;
+
+  .vjs-duration {
+    left: -10px;
+  }
+
+  .vjs-time-divider {
+    padding-top: 2px;
+  }
+}
+
+.vjs-play-progress:before {
+  top: -7px !important;
+}
+
+.vjs-control:hover .vjs-play-progress:before {
+  top: -8.5px !important;
+}
+
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button {
+  background-color: transparent !important;
+}
+
+.vjs-cloudinary-button {
+  display: none !important;
+}
+
+.cld-video-player.cld-fluid .vjs-poster {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.vjs-fluid {
+  padding-top: 312px !important;
+}
+
+.cld-video-player .vjs-big-play-button {
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+label {
+  cursor: pointer;
+}
+
+.news {
+  .ant-tabs-nav-list {
+    justify-content: start !important;
+  }
+}
+
+.input_file {
+  display: block !important;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+}
+
+.r_0 {
+  border-radius: 0;
+}
+
+.r_2 {
+  border-radius: 2px;
+}
+
+.r_8 {
+  border-radius: 8px;
+}
+
+.is_loading {
+  background: #ededed;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1s loading_animation linear infinite;
+}
+
+@keyframes loading_animation {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .vjs-fluid {
+    padding-top: 270px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lesson_shadow {
+    box-shadow: 0 2px 16px #0000000a;
+  }
+  .vjs-fluid {
+    padding-top: 250px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .sidebar .ant-tabs-nav {
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+  .vjs-fluid {
+    padding-top: 172px !important;
+  }
+}
+
+.nuxt-loading-indicator {
+  height: 50px !important;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 133, 46, 1) 40%,
+    rgba(255, 196, 46, 0.99) 51%,
+    rgba(255, 196, 46, 0.99) 9%
+  ) !important;
+}

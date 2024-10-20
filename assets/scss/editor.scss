@@ -1,0 +1,42 @@
+@import "./_colors.scss";
+
+.p-editor-toolbar {
+    background: #191919 !important;
+}
+
+
+.ql-active .ql-stroke {
+    stroke: #40E746 !important;
+}
+
+.ql-stroke {
+    stroke: #999999 !important;
+}
+
+.ql-code {
+    .ql-even {
+        display: block !important;
+    }
+
+    .ql-stroke {
+        display: none;
+    }
+}
+
+.test_editor {
+    width: 100%;
+    .ql-toolbar {
+        display: none !important;
+    }
+}
+
+
+.preview {
+    .p-editor-toolbar{
+        display: none !important;
+    }
+}
+
+.p-editor-toolbar {
+    background: $CF2 !important;
+}

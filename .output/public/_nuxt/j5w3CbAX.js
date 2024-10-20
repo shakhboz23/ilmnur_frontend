@@ -1,0 +1,1 @@
+const a=()=>{function o(t){const r=Math.floor(t/3600),u=t%3600,e=Math.floor(u/60);if(r)return[r,"hours"];if(!r)return e?[e,"minutes"]:t?[t,"seconds"]:[0,"hour"]}function n(t){return t=new Date(t),t.toLocaleDateString("en-GB",{day:"2-digit",month:"2-digit",year:"numeric"}).replace(/\//g,".")}return{formatSecondsToHours:o,formateCreatedAt:n}};export{a as u};
