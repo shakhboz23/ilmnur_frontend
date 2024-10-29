@@ -14,7 +14,7 @@
         </p>
       </section>
       <form @submit.prevent="handleSubmit" class="space-y-6 text-sm">
-        <div class="space-y-2">
+        <!-- <div class="space-y-2">
           <label for="login">Login</label>
           <input v-model="useAuth.login.email" type="email" />
         </div>
@@ -37,7 +37,7 @@
             class="inline-block mt-2 orange hover:underline"
             >Parolni unutdingizmi?</router-link
           >
-        </div>
+        </div> -->
         <div id="googleButton"></div>
         <div class="pt-2 space-y-6 grid">
           <button class="login_btn mx-auto">Kirish</button>

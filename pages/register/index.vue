@@ -9,7 +9,7 @@
         Roʻyxatdan oʻtish
       </h1>
       <form @submit.prevent="useAuth.authRegister" class="space-y-6 text-sm">
-        <div class="space-y-2">
+        <!-- <div class="space-y-2">
           <label for="name">Ism</label>
           <input v-model="useAuth.register.name" id="name" type="text" />
         </div>
@@ -37,7 +37,7 @@
               alt=""
             />
           </div>
-        </div>
+        </div> -->
         <div id="googleButton"></div>
         <div class="pt-8 space-y-6 grid">
           <button class="login_btn mx-auto">Keyingi</button>
