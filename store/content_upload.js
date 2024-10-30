@@ -65,9 +65,13 @@ export const useContentStore = defineStore("content", () => {
     create.video = store.video.file;
     const formData = new FormData();
     console.log(store.video.file);
-    formData.append('file', store.video.file);
-    formData.append('lesson_id', create.lesson_id);
-    formData.append('content', create.content);
+    formData.append("file", store.video.file || store.video.url);
+    formData.append("lesson_id", create.lesson_id);
+    formData.append("content", create.content);
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     axios
       .post(baseUrl + "video_lesson", formData)
       .then((res) => {

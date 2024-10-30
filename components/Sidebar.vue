@@ -97,11 +97,12 @@
 
 <script setup>
 import { sidebar } from "@/constants/sidebar";
-import { useLoadingStore, useUserStore } from "~/store";
+import { useLoadingStore, useUserStore, useAuthStore } from "~/store";
 import { roles } from "~/constants/roles";
 
 const isLoading = useLoadingStore();
 const useUser = useUserStore();
+const useAuth = useAuthStore();
 const router = useRouter();
 const store = reactive({
   account_collapse: false,
@@ -122,6 +123,7 @@ function changeRole(index) {
   isLoading.user.current_role_step = index + 1;
   isLoading.user.current_role_data = isLoading.user.data.role[index];
   isLoading.user.data.current_role = isLoading.user.current_role_data.role;
+  useAuth.updateCurrentRole( isLoading.user.data.id, isLoading.user.data.current_role);
   // isLoading.middleware.passwordChecking = false;
 }
 

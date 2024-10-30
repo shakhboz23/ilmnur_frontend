@@ -260,6 +260,24 @@ export const useAuthStore = defineStore("auth", () => {
       });
   }
 
+  function updateCurrentRole(id: number, current_role: string) {
+    apiRequest
+      .post("user/update_role", { id, current_role })
+      .then((res: any) => {
+        console.log(res);
+        // if (res.data.message == "Verification code sended successfully") {
+        //   localStorage.setItem("token", res.data.token);
+        //   router.push("/verify-email");
+        // }
+      })
+      .catch((err) => {
+        console.log(err);
+        // if (err.response?.data?.message == "Already registered") {
+        //   showMessage("Email", "Allaqachon ro'yhatdan o'tilgan");
+        // }
+      });
+  }
+
   return {
     store,
     create,
@@ -274,5 +292,6 @@ export const useAuthStore = defineStore("auth", () => {
     resetPassword,
     authResetPass,
     verifyGoogleCredential,
+    updateCurrentRole,
   };
 });

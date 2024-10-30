@@ -3,23 +3,14 @@
     <section v-if="!useContent.store.create_lesson">
       <div class="video_lesson w-full md:p-[30px] sm:p-4">
         <nav
-          class="flex items-center justify-between _c92 border-b border-[#EDEDED] bg-white pb-4 mb-5 sm:pt-0 sm:px-0 pt-4 px-4"
-        >
-          <div
-            @click="$router.back()"
-            class="flex items-center gap-4 cursor-pointer max-w-fit"
-          >
+          class="flex items-center justify-between _c92 border-b border-[#EDEDED] bg-white pb-4 mb-5 sm:pt-0 sm:px-0 pt-4 px-4">
+          <div @click="$router.back()" class="flex items-center gap-4 cursor-pointer max-w-fit">
             <img src="@/assets/svg/icon/back_arrow.svg" alt="" />
             <p class="text-lg font-semibold sm:block hidden">Orqaga</p>
           </div>
           <p class="text-xl font-semibold text-black">Video dars</p>
           <div class="flex items-center gap-3">
-            <img
-              @click="backToMain"
-              class="cursor-pointer"
-              src="@/assets/svg/icon/exit.svg"
-              alt=""
-            />
+            <img @click="backToMain" class="cursor-pointer" src="@/assets/svg/icon/exit.svg" alt="" />
             <!-- <button
             class="font-medium b_c40 h-10 px-5 rounded-full white whitespace-nowrap"
           >
@@ -27,28 +18,25 @@
           </button> -->
           </div>
         </nav>
-        <div
-          v-if="useVideoLesson.store.video_lesson?.video_lesson?.length"
-          class="bg-white"
-        >
+        <div v-if="useVideoLesson.store.video_lesson?.video_lesson?.length" class="bg-white">
           <div
-            v-if="!isLoading.isLoadingType('getLessonById') && useVideoLesson.store.video_lesson?.video_lesson[0].video"
-            class="lessons xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] sm:rounded-lg relative overflow-hidden"
-          >
-            <CldVideoPlayer
-              class="xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] w-full sm:rounded-lg overflow-hidden"
-              :src="
-                useVideoLesson.store.video_lesson?.video_lesson[0].video
+            v-if="!isLoading.isLoadingType('getLessonById') && (useVideoLesson.store.video_lesson?.video_lesson[0].video || useVideoLesson.store.video_lesson?.video_lesson[0].youtube)"
+            class="lessons xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] sm:rounded-lg relative overflow-hidden">
+            <!-- {{ useVideoLesson.store.video_lesson?.video_lesson[0] }} -->
+            <div v-if="!useVideoLesson.store.video_lesson?.video_lesson[0]?.youtube">
+              <CldVideoPlayer
+                class="xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] w-full sm:rounded-lg overflow-hidden" :src="useVideoLesson.store.video_lesson?.video_lesson[0].video
                   ?.public_id
-              "
-              :colors="colors"
-              :onPause="({ player }) => onPauseVideo(player)"
-            />
-            <div
-              @click="playVideo"
-              v-show="!store.is_playing"
-              class="full_flex cursor-pointer absolute top-0 left-0 w-full xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] bg-[#242424B2] z-10"
-            >
+                  " :colors="colors" :onPause="({ player }) => onPauseVideo(player)" />
+            </div>
+            <div v-else>
+              <iframe :src="useVideoLesson.store.video_lesson?.video_lesson[0]?.youtube"
+                class="xl:h-[312px] md:h-[270px] sm:h-[250px] h-[172px] w-full sm:rounded-lg overflow-hidden"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div @click="playVideo" v-show="!store.is_playing" class="">
               <img src="@/assets/svg/icon/play.svg" alt="" />
             </div>
           </div>
@@ -68,67 +56,43 @@
             ></iframe>
           </div> -->
           <div class="sm:px-0 px-4">
-            <h1
-              class="md:text-[28px] text-xl font-semibold md:mt-[30px] mt-5 sm:mb-6 mb-5 md:text-center"
-            >
+            <h1 class="md:text-[28px] text-xl font-semibold md:mt-[30px] mt-5 sm:mb-6 mb-5 md:text-center">
               {{ useVideoLesson.store.video_lesson?.title }}
             </h1>
-            <div
-              v-html="
-                useVideoLesson.store.video_lesson?.video_lesson[0]?.content
-              "
-              class="md:w-[55%] mx-auto sm:text-lg space-y-5"
-            ></div>
+            <div v-html="useVideoLesson.store.video_lesson?.video_lesson[0]?.content
+              " class="md:w-[55%] mx-auto sm:text-lg space-y-5"></div>
             <div class="full_flex sm:mt-14 mt-10 pb-[60px]">
-              <button
-                v-if="useVideoLesson.store.video_lesson?.tests[0]?.id"
-                @click="
-                  nextPage(
-                    useVideoLesson.store.video_lesson.video_lesson[0]?.lesson_id
-                  )
-                "
-                class="w-[55%] font-medium bg_orange h-10 px-5 rounded-full white"
-              >
+              <button v-if="useVideoLesson.store.video_lesson?.tests[0]?.id" @click="
+                nextPage(
+                  useVideoLesson.store.video_lesson.video_lesson[0]?.lesson_id
+                )
+                " class="w-[55%] font-medium bg_orange h-10 px-5 rounded-full white">
                 Keyingi
               </button>
-              <button
-                v-else-if="isLoading.user.data.current_role == 'teacher'"
-                @click="
-                  nextPage(
-                    useVideoLesson.store.video_lesson.video_lesson[0]
-                      ?.lesson_id,
-                    'create_test'
-                  )
-                "
-                class="w-[55%] font-medium b_c40 h-10 px-5 rounded-full white"
-              >
+              <button v-else-if="isLoading.user.data.current_role == 'teacher'" @click="
+                nextPage(
+                  useVideoLesson.store.video_lesson.video_lesson[0]
+                    ?.lesson_id,
+                  'create_test'
+                )
+                " class="w-[55%] font-medium b_c40 h-10 px-5 rounded-full white">
                 Test qo'shish
               </button>
 
-              <button
-                v-else
-                class="w-[55%] font-medium bg-[red] h-10 px-5 rounded-full white"
-              >
+              <button v-else class="w-[55%] font-medium bg-[red] h-10 px-5 rounded-full white">
                 Test mavjud emas
               </button>
             </div>
           </div>
         </div>
-        <div
-          v-else-if="isLoading.user.data.current_role == 'teacher'"
-          class="flex flex-col items-center justify-center gap-5 max-h-[312px] min-h-[312px] overflow-hidden"
-        >
+        <div v-else-if="isLoading.user.data.current_role == 'teacher'"
+          class="flex flex-col items-center justify-center gap-5 max-h-[312px] min-h-[312px] overflow-hidden">
           Video darslik mavjud emas
           <div>
-            <UiButton @click="createLesson" class="bg_orange white"
-              >Darslik qo'shish</UiButton
-            >
+            <UiButton @click="createLesson" class="bg_orange white">Darslik qo'shish</UiButton>
           </div>
         </div>
-        <div
-          v-else
-          class="flex flex-col items-center justify-center gap-5 max-h-[312px] min-h-[312px] overflow-hidden"
-        >
+        <div v-else class="flex flex-col items-center justify-center gap-5 max-h-[312px] min-h-[312px] overflow-hidden">
           Video darslik mavjud emas
         </div>
       </div>
@@ -170,7 +134,7 @@ const colors = {
 
 const videoSrc = ref("");
 
-function onPauseVideo(player) {}
+function onPauseVideo(player) { }
 
 function playVideo() {
   const video = document.querySelector(".vjs-tech");

@@ -128,9 +128,14 @@ export const useLessonStore = defineStore("lesson", () => {
     if (modal.edit) {
       return updateLesson();
     }
+    const token = localStorage.getItem("token");
     isLoading.addLoading("uploading");
     axios
-      .post(baseUrl + `lesson/create`, create)
+      .post(baseUrl + `lesson/create`, create, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         console.log(res);
         const subject_id = +router.currentRoute.value.params.subject_id;

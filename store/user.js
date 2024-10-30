@@ -83,7 +83,7 @@ export const useUserStore = defineStore("User", () => {
           // showMessage("xato", "Telefon yoki parol xato");
           store.activeKey += 1;
           // localStorage.setItem("token", res.data.token);
-          create.name = null;
+          create.title = null;
           create.surname = null;
           create.phone = null;
           create.school_number = null;

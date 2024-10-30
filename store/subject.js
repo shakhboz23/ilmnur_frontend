@@ -32,10 +32,10 @@ export const useSubjectStore = defineStore("subject", () => {
   function getSubjects() {
     isLoading.addLoading("getSubjects");
     axios
-      .get(baseUrl + `subject/${store.class}`)
+      .get(baseUrl + `subject`)
       .then((res) => {
         console.log(res);
-        store.subjects = res.data.data;
+        store.subjects = res.data;
         isLoading.removeLoading("getSubjects");
       })
       .catch((err) => {
