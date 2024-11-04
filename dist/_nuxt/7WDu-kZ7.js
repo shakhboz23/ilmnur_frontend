@@ -1,0 +1,1 @@
+import{V as t,$ as n,as as l}from"./Dg7Bj1Dn.js";const a={__name:"FullLoading",props:{l_height:String},setup(e){return(o,_)=>(t(),n("div",{style:l(`height: ${e.l_height}`),class:"is_loading table_loading h-[60px]"},null,4))}},i=a;export{i as _};
