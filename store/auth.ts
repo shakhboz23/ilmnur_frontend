@@ -90,7 +90,7 @@ export const useAuthStore = defineStore("auth", () => {
           ]?.includes(router.currentRoute.value.name);
           if (!isRoute) {
             console.log("object");
-            return navigateTo("/");
+            return navigateTo("/login");
           } // showMessage("Xato", "Nimadir xato ketdi");
         }
         isLoading.removeLoading("getUserFullInfo");
@@ -112,7 +112,7 @@ export const useAuthStore = defineStore("auth", () => {
         ]?.includes(router.currentRoute.value.name);
         if (!isRoute) {
           console.log("object");
-          return navigateTo("/");
+          return navigateTo("/login");
         } // showMessage("Xato", "Nimadir xato ketdi");
         isLoading.removeLoading("getUserFullInfo");
       });

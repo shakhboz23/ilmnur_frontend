@@ -73,7 +73,7 @@ export default defineNuxtRouteMiddleware(async (to: any, from) => {
         }
         isLoading.middleware.loading = false;
         console.log("object");
-        return navigateTo("/");
+        return navigateTo("/login");
       } else {
         isLoading.middleware.loading = false;
       }
@@ -83,7 +83,7 @@ export default defineNuxtRouteMiddleware(async (to: any, from) => {
     console.log(error);
     if (!isRoute) {
       console.log("object");
-      return navigateTo("/");
+      return navigateTo("/login");
     }
   }
 });
