@@ -61,7 +61,7 @@ export const useAuthStore = defineStore("auth", () => {
         if (res.data.statusCode == 200) {
           // isLoading.middleware.passwordChecking = false;
           isLoading.user.data = res.data?.data;
-          isLoading.store.socket = io("http://localhost:4000", {
+          isLoading.store.socket = io(realtimeUrl, {
             reconnectionDelayMax: 10000000, // Maximum delay between reconnection attempts (milliseconds)
             reconnectionAttempts: 5,
             query: {
