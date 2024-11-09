@@ -33,7 +33,7 @@
       "
       class="min-h-screen min-w-screen full_flex"
     >
-      Test vaqti tugagan
+      {{isLoading.isLoadingType('getUsers') ? 'Yuklanmoqda...':'Test vaqti tugagan'}}
     </div>
     <div v-else>
       <UiStarAnimation

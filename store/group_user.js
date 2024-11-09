@@ -22,11 +22,20 @@ export const useGroupuserStore = defineStore("Groupuser", () => {
     group_id: "",
   });
 
+  const openNotification = (res) => {
+    notification.destroy();
+    notification.open({
+      message: "Notification Title",
+      description: res,
+      duration: 0,
+    });
+  };
+
   function createData() {
     const token = localStorage.getItem("token");
     create.group_id = router.currentRoute.value.params.class;
     console.log(create.group_id);
-    if (store.group_type == 'user') {
+    if (store.group_type == "user") {
       create.users = [store.full_name];
     } else {
       create.users = store.file;
@@ -38,9 +47,12 @@ export const useGroupuserStore = defineStore("Groupuser", () => {
         },
       })
       .then((res) => {
+        getAll();
         console.log(res);
+        openNotification(res.data.message);
       })
       .catch((err) => {
+        openNotification(err?.response?.data?.message);
         console.log(err);
       });
   }

@@ -34,6 +34,7 @@ export const useGroupStore = defineStore("Group", () => {
     axios
       .post(baseUrl + "group/create", create)
       .then((res) => {
+        getAll();
         console.log(res);
         if (res.data.statusCode == 200) {
           openNotification(res.data.message);

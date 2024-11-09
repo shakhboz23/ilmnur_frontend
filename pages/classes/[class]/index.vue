@@ -1,29 +1,14 @@
 <template>
-  <main
-    class="bg-white pb-10 rounded-lg overflow-hidden overflow-y-auto max-h-[calc(100vh_-_160px)]"
-  >
-    <nav
-      class="flex items-center justify-between p-5 border-b border-[#EDEDED]"
-    >
-      <button
-        @click="$router.back()"
-        class="flex items-center gap-4 font-semibold text-xl"
-      >
+  <main class="bg-white pb-10 rounded-lg overflow-hidden overflow-y-auto max-h-[calc(100vh_-_160px)]">
+    <nav class="flex items-center justify-between p-5 border-b border-[#EDEDED]">
+      <button @click="$router.back()" class="flex items-center gap-4 font-semibold text-xl">
         <img src="@/assets/svg/icon/back_arrow.svg" alt="" />
         O'quvchilar
       </button>
       <div class="flex gap-4">
-        <UiButton
-          @click="store.create = true"
-          class="bg_orange font-semibold white !px-6"
-          >Qo‘shish</UiButton
-        >
-        <router-link
-          :to="`/create_test?group_id=${$router.currentRoute.value.params.class}`"
-        >
-          <UiButton class="bg_orange font-semibold white !px-6"
-            >Test qo'shish</UiButton
-          >
+        <UiButton @click="store.create = true" class="bg_orange font-semibold white !px-6">Qo‘shish</UiButton>
+        <router-link :to="`/create_test?group_id=${$router.currentRoute.value.params.class}`">
+          <UiButton class="bg_orange font-semibold white !px-6">Test qo'shish</UiButton>
         </router-link>
       </div>
       <!-- /create_test?lesson_id=2 -->
@@ -37,10 +22,7 @@
             </div>
           </template>
         </a-tab-pane>
-        <a-tab-pane
-          :key="index + 1"
-          v-for="(i, index) in useGroupuser.store.group.test_step"
-        >
+        <a-tab-pane :key="index + 1" v-for="(i, index) in useGroupuser.store.group.test_step">
           <template #tab>
             <div class="flex gap-1 font-medium">
               <p>test{{ i }}</p>
@@ -48,15 +30,11 @@
           </template>
         </a-tab-pane>
       </a-tabs>
-      <button
-        @click="
-          () => {
-            useGroup.getById();
-            store.generate = true;
-          }
-        "
-        class="border_orange py-1 px-4 rounded-full"
-      >
+      <button @click="() => {
+        useGroup.getById();
+        store.generate = true;
+      }
+        " class="border_orange py-1 px-4 rounded-full">
         Test kodi 🔄
       </button>
     </div>
@@ -70,24 +48,16 @@
             <th class="text-start font-medium _c66 px-5 py-3">Telefon raqam</th>
             <th class="text-start font-medium _c66 px-5 py-3">Status</th>
             <th class="text-start font-medium _c66 px-5 py-3">Yaratilgan</th>
-            <th
-              v-if="isLoading.user.data.current_role == 'leader_teacher'"
-              class="px-5 py-3"
-            ></th>
+            <th v-if="isLoading.user.data.current_role == 'leader_teacher'" class="px-5 py-3"></th>
             <th class="_c66 px-5 py-3"></th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            class="border-b border-[#EDEDED]"
-            v-for="(i, index) in useGroupuser.store.getall"
-            :class="i.user_status == 'pending' ? 'bg-[#F6F6F6]' : ''"
-          >
+          <tr class="border-b border-[#EDEDED]" v-for="(i, index) in useGroupuser.store.getall"
+            :class="i.user_status == 'pending' ? 'bg-[#F6F6F6]' : ''">
             <td class="py-6 px-5 text-sm relative">
-              <p
-                v-if="i.user_status == 'pending'"
-                class="b_cf23 w-[10px] h-[10px] absolute top-2 left-2 rounded-full"
-              ></p>
+              <p v-if="i.user_status == 'pending'" class="b_cf23 w-[10px] h-[10px] absolute top-2 left-2 rounded-full">
+              </p>
               #{{ i.id }}
             </td>
             <td class="py-6 px-5">
@@ -102,39 +72,20 @@
               <UiStatus :status="1" />
             </td>
             <td class="py-6 px-5">{{ formateCreatedAt(i.createdAt) }}</td>
-            <td
-              class="py-6 px-5 flex items-center whitespace-nowrap sticky right-0 bg-[#F6F6F6]"
-              v-if="
-                isLoading.user.data.current_role == 'leader_teacher' &&
-                i.user_status == 'pending'
-              "
-            >
-              <ui-button
-                @click="useUser.updateStatus(i.id, index)"
-                class="!h-[44px] orange border border-[#FF852E] !px-4"
-                ><span class="lg:block hidden">Qabul qilish</span>
-                <img
-                  class="lg:hidden block"
-                  src="@/assets/svg/icon/accept.svg"
-                  alt=""
-              /></ui-button>
-              <ui-button
-                @click="useUser.deleteUser(i.id, index)"
-                class="!h-[44px] _c24 !px-4"
-                ><span class="lg:block hidden">Rad etish</span>
-                <img
-                  class="lg:hidden block"
-                  src="@/assets/svg/icon/refuse.svg"
-                  alt=""
-              /></ui-button>
+            <td class="py-6 px-5 flex items-center whitespace-nowrap sticky right-0 bg-[#F6F6F6]" v-if="
+              isLoading.user.data.current_role == 'leader_teacher' &&
+              i.user_status == 'pending'
+            ">
+              <ui-button @click="useUser.updateStatus(i.id, index)"
+                class="!h-[44px] orange border border-[#FF852E] !px-4"><span class="lg:block hidden">Qabul qilish</span>
+                <img class="lg:hidden block" src="@/assets/svg/icon/accept.svg" alt="" /></ui-button>
+              <ui-button @click="useUser.deleteUser(i.id, index)" class="!h-[44px] _c24 !px-4"><span
+                  class="lg:block hidden">Rad etish</span>
+                <img class="lg:hidden block" src="@/assets/svg/icon/refuse.svg" alt="" /></ui-button>
             </td>
             <td class="py-6 px-5">
               <a-dropdown :trigger="['click']">
-                <img
-                  class="cursor-pointer min-w-[20px]"
-                  src="@/assets/svg/icon/threedot_black.svg"
-                  alt=""
-                />
+                <img class="cursor-pointer min-w-[20px]" src="@/assets/svg/icon/threedot_black.svg" alt="" />
                 <template #overlay>
                   <a-menu>
                     <a-menu-item>Edit</a-menu-item>
@@ -146,10 +97,7 @@
           </tr>
         </tbody>
       </table>
-      <div
-        v-if="isLoading.isLoadingType('getAllUsers')"
-        class="w-full space-y-1 mt-1"
-      >
+      <div v-if="isLoading.isLoadingType('getAllUsers')" class="w-full space-y-1 mt-1">
         <UiFullLoading v-for="_ in 10" :l_height="'60px'" />
       </div>
     </section>
@@ -159,10 +107,7 @@
       <div class="flex justify-between items-center w-full">
         <h1 class="font-semibold text-2xl">O'quvchi qo'shish</h1>
       </div>
-      <a-tabs
-        class="max-w-fit mx-auto !min-w-[120px]"
-        v-model:activeKey="useGroupuser.store.group_type"
-      >
+      <a-tabs class="max-w-fit mx-auto !min-w-[120px]" v-model:activeKey="useGroupuser.store.group_type">
         <a-tab-pane key="user">
           <template #tab>User</template>
         </a-tab-pane>
@@ -170,37 +115,21 @@
           <template #tab>File</template>
         </a-tab-pane>
       </a-tabs>
-      <form
-        class="space-y-5 _c45 mt-[30px]"
-        @submit.prevent="useGroupuser.createData"
-      >
+      <form class="space-y-5 _c45 mt-[30px]" @submit.prevent="useGroupuser.createData">
         <div v-if="useGroupuser.store.group_type == 'user'">
           <div class="space-y-2">
             <label for="name">Ism familiya</label>
-            <input
-              v-model="useGroupuser.store.full_name"
-              class="rounded-[12px]"
-              id="name"
-              type="text"
-            />
+            <input v-model="useGroupuser.store.full_name" class="rounded-[12px]" id="name" type="text" />
           </div>
         </div>
         <div v-else>
           <div class="space-y-2">
             <label for="file">Fayl yuklang</label>
-            <input
-              @change="handleFile"
-              class="rounded-[12px]"
-              id="file"
-              type="file"
-            />
+            <input @change="handleFile" class="rounded-[12px]" id="file" type="file" />
           </div>
         </div>
-        <UiButton
-          @click="store.create = false"
-          type="submit"
-          class="!h-12 w-full bg_orange !mt-[54px] font-semibold white"
-        >
+        <UiButton @click="store.create = false" type="submit"
+          class="!h-12 w-full bg_orange !mt-[54px] font-semibold white">
           Yaratish
           <Loading />
         </UiButton>
@@ -212,45 +141,47 @@
       <div class="flex justify-between items-center w-full">
         <h1 class="font-semibold text-2xl">Kodni yangilash</h1>
       </div>
-      <div
-      v-loading="isLoading.isLoadingType('getById')"
-        class="space-y-5 _c45 mt-[30px]"
-      >
+      <div v-loading="isLoading.isLoadingType('getById')" class="space-y-5 _c45 mt-[30px]">
         <div class="space-y-4">
           <div class="space-y-2">
-            Guruh id <span class="text-blue-700 font-bold">#{{useGroup.store.getById?.id}}</span>
+            Guruh id <span class="text-blue-700 font-bold">#{{ useGroup.store.getById?.id }}</span>
           </div>
           <div class="space-y-2">
-            Test kodi <span class="text-blue-700 font-bold">#{{useGroup.store.getById?.code}}</span>
+            Test kodi <span class="text-blue-700 font-bold">#{{ useGroup.store.getById?.code }}</span>
           </div>
           <div v-if="useGroup.store.getById?.group_test_settings">
             <div class="space-y-2">
-              Amal qilish muddati <br /> <span class="text-blue-700 font-bold">#{{new Date(+useGroup.store.getById?.expire_time)}}</span>
+              Amal qilish muddati <br /> <span class="text-blue-700 font-bold">#{{ new
+                Date(+useGroup.store.getById?.expire_time) }}</span>
             </div>
             <h2 class="font-bold text-xl my-2">Guruh testi haqida</h2>
             <div class="space-y-2">
-              Boshlanish vaqti <br /> <span class="text-blue-700 font-bold">#{{new Date(useGroup.store.getById?.group_test_settings[0]?.start_date)}}</span>
+              Boshlanish vaqti <br /> <span class="text-blue-700 font-bold">#{{ new
+                Date(useGroup.store.getById?.group_test_settings[0]?.start_date) }}</span>
             </div>
             <div class="space-y-2">
-              Tugash vaqti <br /> <span class="text-blue-700 font-bold">#{{new Date(useGroup.store.getById?.group_test_settings[0]?.end_date)}}</span>
+              Tugash vaqti <br /> <span class="text-blue-700 font-bold">#{{ new
+                Date(useGroup.store.getById?.group_test_settings[0]?.end_date) }}</span>
             </div>
             <div class="space-y-2">
-              Test bosqichi <br /> <span class="text-blue-700 font-bold">#{{useGroup.store.getById?.group_test_settings[0]?.sort_level}}</span>
+              Test bosqichi <br /> <span class="text-blue-700 font-bold">#{{
+                useGroup.store.getById?.group_test_settings[0]?.sort_level }}</span>
             </div>
             <div class="space-y-2">
-              Test soni <br /> <span class="text-blue-700 font-bold">#{{useGroup.store.getById?.group_test_settings[0]?.test_count}}</span>
+              Test soni <br /> <span class="text-blue-700 font-bold">#{{
+                useGroup.store.getById?.group_test_settings[0]?.test_count }}</span>
             </div>
           </div>
+          Link: <a class="text-blue-600" :href="`https://ilmnur.online/test?g=${useGroup.store.getById?.id}`"
+            target="_blank">ilmnur.online?test={{
+              useGroup.store.getById?.id }}</a> <button
+            @click="copytoclipboard(`https://ilmnur.online/test?g=${useGroup.store.getById?.id}`)">Copy</button>
           <!-- <div class="space-y-2">
             Test kodi <br /> <span class="text-blue-700 font-bold">#{{new Date(+useGroup.store.getById?.expire_time)}}</span>
           </div> -->
         </div>
-        <UiButton
-          type="submit"
-          class="!h-12 w-full bg_orange !mt-[54px] font-semibold white"
-          v-loading="isLoading.isLoadingType('generate')"
-          @click="useGroup.updateCode"
-        >
+        <UiButton type="submit" class="!h-12 w-full bg_orange !mt-[54px] font-semibold white"
+          v-loading="isLoading.isLoadingType('generate')" @click="useGroup.updateCode">
           Yangilash
         </UiButton>
       </div>
@@ -291,7 +222,9 @@ useUser.create.role = "student";
 useGroupuser.getAll();
 
 // useUser.getAllStudent();
-
+function copytoclipboard(text) {
+  navigator.clipboard.writeText(text);
+}
 async function handleFile(e) {
   try {
     const file = e.target.files[0];
@@ -310,7 +243,7 @@ async function handleFile(e) {
         useGroupuser.store.file.push(doc.querySelector("p").innerHTML);
       }
     }
-  } catch (_) {}
+  } catch (_) { }
 }
 
 function convertFileToHtml(file) {
