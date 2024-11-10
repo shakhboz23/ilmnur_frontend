@@ -284,12 +284,10 @@ export const useTestStore = defineStore("test", () => {
         .then((res) => {
           console.log(res);
           showMessage("Uploaded successfully");
-          isLoading.removeLoading("createTest");
         })
         .catch((err) => {
           console.log(err);
           showMessage(err?.response?.data?.message);
-          isLoading.removeLoading("createTest");
         });
     } else {
       await axios
@@ -301,13 +299,12 @@ export const useTestStore = defineStore("test", () => {
         .then((res) => {
           console.log(res);
           showMessage("Uploaded successfully");
-          isLoading.removeLoading("createTest");
         })
         .catch((err) => {
           console.log(err);
           showMessage(err?.response?.data?.message);
-          isLoading.removeLoading("createTest");
         });
+      isLoading.removeLoading("createTest");
     }
 
     let test_settings2 = {

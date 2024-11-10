@@ -1,24 +1,17 @@
 <template>
-  <main
-    class="rounded-[6px] overflow-hidden overflow-y-auto h-full max-h-[calc(100vh_-_160px)]"
-  >
+  <main class="rounded-[6px] overflow-hidden overflow-y-auto h-full max-h-[calc(100vh_-_160px)]">
     <section class="rounded-[6px] overflow-hidden">
       <h1 class="text-xl font-semibold leading-[30px] pt-8 pb-6 bg-white px-9">
         Test yaratishni boshlang:
       </h1>
       <div class="mt-6 px-9">
         <div class="flex items-center justify-between">
-          <a-select
-            v-model:value="useTest.store.questions_count"
-            class="min-w-[145px] test_arrow !h-[44px] sr_12"
-            :options="
-              questions_count.map((pro) => ({
-                label: `${pro.value} talik savollar`,
-                value: pro.value,
-              }))
-            "
-            required
-          >
+          <a-select v-model:value="useTest.store.questions_count" class="min-w-[145px] test_arrow !h-[44px] sr_12"
+            :options="questions_count.map((pro) => ({
+              label: `${pro.value} talik savollar`,
+              value: pro.value,
+            }))
+              " required>
             <template #suffixIcon>
               <div class="full_flex bg-[#FFF3EB] w-[42px] !h-[42px]">
                 <img src="@/assets/svg/icon/arrow.svg" alt="" />
@@ -27,36 +20,21 @@
           </a-select>
           <div class="flex gap-2">
             <div>
-              <label
-                for="import_file"
-                class="full_flex gap-2 bg-white p-1.5 rounded-md border_ced cursor-pointer"
-              >
+              <label for="import_file" class="full_flex gap-2 bg-white p-1.5 rounded-md border_ced cursor-pointer">
                 <img class="h-7 w-7" src="@/assets/svg/image/word.png" alt="" />
                 <p>WORD</p>
               </label>
             </div>
-            <button
-              @click="store.settings = true"
-              class="bg-white rounded-md p-1.5 w-10"
-            >
-              <img
-                class="mx-auto"
-                src="@/assets/svg/subjects/settings.svg"
-                alt=""
-              />
+            <button @click="store.settings = true" class="bg-white rounded-md p-1.5 w-10">
+              <img class="mx-auto" src="@/assets/svg/subjects/settings.svg" alt="" />
             </button>
           </div>
         </div>
         <div class="flex gap-[10px] my-6">
-          <button
-            v-for="i in useTest.store.questions_count"
-            @click="store.slideStep = i"
-            :class="[
-              store.slideStep == i ? 'border border-[#40E746]' : 'border_ced',
-              checkQuestion(i) ? 'bg-[#40E746]' : '',
-            ]"
-            class="h-10 w-10 bg-white r_2 _c55"
-          >
+          <button v-for="i in useTest.store.questions_count" @click="store.slideStep = i" :class="[
+            store.slideStep == i ? 'border border-[#40E746]' : 'border_ced',
+            checkQuestion(i) ? 'bg-[#40E746]' : '',
+          ]" class="h-10 w-10 bg-white r_2 _c55">
             {{ i }}
           </button>
         </div>
@@ -64,19 +42,12 @@
       <div class="bg-white px-9 py-6">
         <div class="flex items-center justify-between">
           <p class="text-2xl">
-            <span class="font-semibold text-[28px]"
-              >{{ store.slideStep }}.</span
-            >
+            <span class="font-semibold text-[28px]">{{ store.slideStep }}.</span>
             Savol
           </p>
-          <a-select
-            v-model:value="useTest.test[store.slideStep].type"
-            class="!relative min-w-[145px] test_arrow !h-[44px] sr_12"
-            :options="
-              sinf.map((pro) => ({ label: pro.label, value: pro.value }))
-            "
-            required
-          >
+          <a-select v-model:value="useTest.test[store.slideStep].type"
+            class="!relative min-w-[145px] test_arrow !h-[44px] sr_12" :options="sinf.map((pro) => ({ label: pro.label, value: pro.value }))
+              " required>
             <template #suffixIcon>
               <div class="full_flex bg-[#FFF3EB] w-[42px] !h-[42px]">
                 <img src="@/assets/svg/icon/arrow.svg" alt="" />
@@ -84,24 +55,13 @@
             </template>
           </a-select>
         </div>
-        <swiper
-          @mousewheel="mouseSlider"
-          @slider-move="changeSlide"
-          :watchSlidesProgress="true"
-          :slidesPerView="1"
-          :spaceBetween="30"
-          :pagination="{ clickable: true }"
-          class="mySwiper"
-          :modules="modules"
-        >
+        <swiper @mousewheel="mouseSlider" @slider-move="changeSlide" :watchSlidesProgress="true" :slidesPerView="1"
+          :spaceBetween="30" :pagination="{ clickable: true }" class="mySwiper" :modules="modules">
           <swiper-slide :id="step" v-for="step in 16">
             <section>
               <div class="w-[70%]">
                 <div class="flex overflow-hidden overflow-x-auto">
-                  <div
-                    v-for="img in store.questions"
-                    class="max-h-min max-w-min min-h-fit min-w-fit"
-                  >
+                  <div v-for="img in store.questions" class="max-h-min max-w-min min-h-fit min-w-fit">
                     <img class="max-h-[200px]" :src="img" alt="" />
                   </div>
                 </div>
@@ -115,112 +75,56 @@
                 <ClientOnly>
                   <Editor v-model="useTest.test[step].question[0]" />
                 </ClientOnly>
-                <label class="font-medium" for="resourses"
-                  >Resurslarni biriktiring</label
-                >
+                <label class="font-medium" for="resourses">Resurslarni biriktiring</label>
                 <div class="full_flex my-auto space-x-10 mt-5">
-                  <a-button
-                    ref="ref1"
-                    @click="openModal('video')"
-                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none"
-                  >
-                    <div
-                      class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full"
-                    >
-                      <img
-                        class="w-[40%]"
-                        src="@/assets/svg/subjects/video.svg"
-                        alt=""
-                      />
+                  <a-button ref="ref1" @click="openModal('video')"
+                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none">
+                    <div class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full">
+                      <img class="w-[40%]" src="@/assets/svg/subjects/video.svg" alt="" />
                     </div>
                     <p class="font-medium mt-4 text-xs _c24">Video</p>
                   </a-button>
-                  <a-button
-                    ref="ref2"
-                    @click="openModal('tekst')"
-                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none"
-                  >
-                    <div
-                      class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full"
-                    >
-                      <img
-                        class="w-[40%]"
-                        src="@/assets/svg/subjects/text.svg"
-                        alt=""
-                      />
+                  <a-button ref="ref2" @click="openModal('tekst')"
+                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none">
+                    <div class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full">
+                      <img class="w-[40%]" src="@/assets/svg/subjects/text.svg" alt="" />
                     </div>
                     <p class="font-medium mt-4 text-xs _c24">Tekst</p>
                   </a-button>
-                  <a-button
-                    ref="ref3"
-                    @click="openModal('image')"
-                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none"
-                  >
-                    <div
-                      class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full"
-                    >
-                      <img
-                        class="w-[40%]"
-                        src="@/assets/svg/subjects/image.svg"
-                        alt=""
-                      />
+                  <a-button ref="ref3" @click="openModal('image')"
+                    class="text-center w-12 h-[100px] !p-0 border-0 shadow-none">
+                    <div class="full_flex mx-auto h-10 w-10 bg-[#FFF3EB] rounded-full">
+                      <img class="w-[40%]" src="@/assets/svg/subjects/image.svg" alt="" />
                     </div>
                     <p class="font-medium mt-4 text-xs _c24">Rasm</p>
                   </a-button>
                 </div>
-                <label
-                  @click="store.fileType = 'question'"
-                  for="upload_question"
-                  class="max-w-fit full_flex mt-6 gap-4 h-[44px] border border-[#EDEDED] rounded-full px-8"
-                >
-                  <img
-                    class="cursor-pointer"
-                    src="@/assets/svg/subjects/upload.svg"
-                    alt=""
-                  />
+                <label @click="store.fileType = 'question'" for="upload_question"
+                  class="max-w-fit full_flex mt-6 gap-4 h-[44px] border border-[#EDEDED] rounded-full px-8">
+                  <img class="cursor-pointer" src="@/assets/svg/subjects/upload.svg" alt="" />
                   Fayl biriktirish
                 </label>
                 <hr class="border_ced my-6 !border-b-0" />
                 <div class="space-y-6">
                   <h1 class="-mb-3">Variantlar</h1>
                   <p>To‘g‘ri javobni belgilang</p>
-                  <div
-                    class="space-y-6"
-                    v-if="
-                      useTest.test[step]?.type == 'variant' ||
-                      useTest.test[step]?.type == 'refillable'
-                    "
-                  >
+                  <div class="space-y-6" v-if="
+                    useTest.test[step]?.type == 'variant' ||
+                    useTest.test[step]?.type == 'refillable'
+                  ">
                     <div v-for="i in 5" class="flex items-center gap-4">
-                      <div
-                        class="flex items-center gap-4 b_cf5 r_8 w-full px-4"
-                      >
+                      <div class="flex items-center gap-4 b_cf5 r_8 w-full px-4">
                         <a-checkbox v-model:checked="checked"> </a-checkbox>
-                        <img
-                          class="max-h-[160px] my-4"
-                          v-if="
-                            useTest.test[step]?.variant[i] &&
-                            typeof useTest.test[step]?.variant[i] == 'object'
-                          "
-                          :src="useTest.test[step]?.variant[i][1]"
-                          alt=""
-                        />
+                        <img class="max-h-[160px] my-4" v-if="
+                          useTest.test[step]?.variant[i] &&
+                          typeof useTest.test[step]?.variant[i] == 'object'
+                        " :src="useTest.test[step]?.variant[i][1]" alt="" />
                         <ClientOnly v-else>
-                          <Editor
-                            class="w-full -mr-4"
-                            v-model="useTest.test[step].variant[i]"
-                          />
+                          <Editor class="w-full -mr-4" v-model="useTest.test[step].variant[i]" />
                         </ClientOnly>
                       </div>
-                      <label
-                        @click="setFileData(i, 'variant')"
-                        for="upload_question"
-                      >
-                        <img
-                          class="cursor-pointer"
-                          src="@/assets/svg/subjects/upload.svg"
-                          alt=""
-                        />
+                      <label @click="setFileData(i, 'variant')" for="upload_question">
+                        <img class="cursor-pointer" src="@/assets/svg/subjects/upload.svg" alt="" />
                       </label>
                     </div>
                   </div>
@@ -229,76 +133,37 @@
                       <hr v-if="i != 1" class="border_ced my-6 !border-b-0" />
                       <div class="grid grid-cols-2 gap-6">
                         <div v-for="i in 2" class="flex items-center gap-4">
-                          <div
-                            class="flex items-center gap-4 b_cf5 r_8 w-full px-4"
-                          >
+                          <div class="flex items-center gap-4 b_cf5 r_8 w-full px-4">
                             <a-checkbox v-model:checked="checked"> </a-checkbox>
-                            <img
-                              class="max-h-[160px] my-4"
-                              v-if="
-                                useTest.test[step]?.variant[i] &&
-                                typeof useTest.test[step]?.variant[i] ==
-                                  'object'
-                              "
-                              :src="useTest.test[step]?.variant[i][1]"
-                              alt=""
-                            />
-                            <input
-                              v-else
-                              v-model="useTest.test[step].variant[i]"
-                              class="border-0 bg-transparent p-0 rounded-[0]"
-                              type="text"
-                              placeholder="Variant uchun"
-                            />
+                            <img class="max-h-[160px] my-4" v-if="
+                              useTest.test[step]?.variant[i] &&
+                              typeof useTest.test[step]?.variant[i] ==
+                              'object'
+                            " :src="useTest.test[step]?.variant[i][1]" alt="" />
+                            <input v-else v-model="useTest.test[step].variant[i]"
+                              class="border-0 bg-transparent p-0 rounded-[0]" type="text" placeholder="Variant uchun" />
                           </div>
-                          <label
-                            @click="setFileData(i, 'variant')"
-                            for="upload_question"
-                          >
-                            <img
-                              class="cursor-pointer"
-                              src="@/assets/svg/subjects/upload.svg"
-                              alt=""
-                            />
+                          <label @click="setFileData(i, 'variant')" for="upload_question">
+                            <img class="cursor-pointer" src="@/assets/svg/subjects/upload.svg" alt="" />
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div
-                    v-else-if="useTest.test[step]?.type == 'customizable'"
-                    class="b_cf5 r_8 px-4"
-                  >
+                  <div v-else-if="useTest.test[step]?.type == 'customizable'" class="b_cf5 r_8 px-4">
                     <div v-for="i in 3">
                       <div class="flex items-center gap-4">
                         <div class="flex items-center gap-4 r_8 w-full">
                           <a-checkbox v-model:checked="checked"> </a-checkbox>
-                          <img
-                            class="max-h-[160px] my-4"
-                            v-if="
-                              useTest.test[step]?.variant[i] &&
-                              typeof useTest.test[step]?.variant[i] == 'object'
-                            "
-                            :src="useTest.test[step]?.variant[i][1]"
-                            alt=""
-                          />
-                          <input
-                            v-else
-                            v-model="useTest.test[step].variant[i]"
-                            class="border-0 bg-transparent p-0 rounded-[0]"
-                            type="text"
-                            placeholder="Variant uchun"
-                          />
+                          <img class="max-h-[160px] my-4" v-if="
+                            useTest.test[step]?.variant[i] &&
+                            typeof useTest.test[step]?.variant[i] == 'object'
+                          " :src="useTest.test[step]?.variant[i][1]" alt="" />
+                          <input v-else v-model="useTest.test[step].variant[i]"
+                            class="border-0 bg-transparent p-0 rounded-[0]" type="text" placeholder="Variant uchun" />
                         </div>
-                        <label
-                          @click="setFileData(i, 'variant')"
-                          for="upload_question"
-                        >
-                          <img
-                            class="cursor-pointer"
-                            src="@/assets/svg/subjects/upload.svg"
-                            alt=""
-                          />
+                        <label @click="setFileData(i, 'variant')" for="upload_question">
+                          <img class="cursor-pointer" src="@/assets/svg/subjects/upload.svg" alt="" />
                         </label>
                       </div>
                       <hr v-if="i != 1" class="border_ced !border-b-0" />
@@ -310,44 +175,21 @@
           </swiper-slide>
         </swiper>
         <div class="text-end w-[70%] mt-6">
-          <UiButton
-            v-if="store.is_completed"
-            @click="nextQuestion"
-            class="!h-12 font-semibold b_c40 relative white !px-6"
-          >
+          <UiButton v-loading="isLoading.isLoadingType('createTest')" v-if="store.is_completed" @click="nextQuestion"
+            class="!h-12 font-semibold b_c40 relative white !px-6">
             Yuklash
-            <UiCircleDivLoading
-              v-if="isLoading.isLoadingType('createTest')"
-              class="full_flex scale-75 rounded-lg"
-            />
+            <UiCircleDivLoading v-if="isLoading.isLoadingType('createTest')" class="full_flex scale-75 rounded-lg" />
           </UiButton>
-          <UiButton
-            v-else
-            @click="nextQuestion"
-            class="!h-12 font-semibold bg_orange relative white !px-6"
-          >
+          <UiButton v-else @click="nextQuestion" class="!h-12 font-semibold bg_orange relative white !px-6">
             Keyingi
-            <UiCircleDivLoading
-              v-if="isLoading.isLoadingType('createTest')"
-              class="full_flex scale-75 rounded-lg"
-            />
+            <UiCircleDivLoading v-if="isLoading.isLoadingType('createTest')" class="full_flex scale-75 rounded-lg" />
           </UiButton>
         </div>
       </div>
     </section>
 
-    <input
-      @change="handleFileUpload"
-      class="input_file"
-      type="file"
-      id="upload_question"
-    />
-    <input
-      @change="importFile"
-      class="input_file"
-      type="file"
-      id="import_file"
-    />
+    <input @change="handleFileUpload" class="input_file" type="file" id="upload_question" />
+    <input @change="importFile" class="input_file" type="file" id="import_file" />
 
     <!-- create -->
     <a-modal class="max-w-[440px]" v-model:open="store.settings" centered>
@@ -358,103 +200,59 @@
         <div class="space-y-2">
           <label for="name">Boshlanish vaqti</label>
           <div class="flex gap-2">
-            <a-date-picker
-              class="w-full"
-              v-model:value="useTest.test_settings.start_date"
-              placeholder="0000-00-00"
-            />
-            <a-time-picker
-              v-model:value="useTest.test_settings.start_date"
-              format="HH:mm"
-              placeholder="00:00"
-            />
+            <a-date-picker class="w-full" v-model:value="useTest.test_settings.start_date" placeholder="0000-00-00" />
+            <a-time-picker v-model:value="useTest.test_settings.start_date" format="HH:mm" placeholder="00:00" />
           </div>
         </div>
         <div class="space-y-2">
           <label for="name">Tugash vaqti</label>
           <div class="flex gap-2">
-            <a-date-picker
-              class="w-full"
-              v-model:value="useTest.test_settings.end_date"
-              placeholder="0000-00-00"
-            />
-            <a-time-picker
-              v-model:value="useTest.test_settings.end_date"
-              format="HH:mm"
-              placeholder="00:00"
-            />
+            <a-date-picker class="w-full" v-model:value="useTest.test_settings.end_date" placeholder="0000-00-00" />
+            <a-time-picker v-model:value="useTest.test_settings.end_date" format="HH:mm" placeholder="00:00" />
           </div>
         </div>
         <div class="space-y-2">
           <label for="name">Test muddati</label>
           {{ useTest.test_settings.period }}
           <div>
-            <a-time-picker
-              @change="
-                (val) => {
-                  const hours = val.split(':');
-                  const hour = +hours[0] * 60;
-                  const minute = +hours[1];
-                  useTest.test_settings.period = minute + hour;
-                }
-              "
-              format="HH:mm"
-              value-format="HH:mm"
-              placeholder="00:00"
-            />
+            <a-time-picker @change="(val) => {
+              const hours = val.split(':');
+              const hour = +hours[0] * 60;
+              const minute = +hours[1];
+              useTest.test_settings.period = minute + hour;
+            }
+              " format="HH:mm" value-format="HH:mm" placeholder="00:00" />
           </div>
         </div>
         <div class="space-y-2">
           <h2>Saralash</h2>
           <label for="sortnum">Saralash bosqichi</label>
           <div class="flex items-center gap-4" v-for="(i, index) in useTest.store.test_step">
-            {{index + 1}}.
-            <a-select
-              v-model:value="useTest.test_settings.sort_level[index]"
-              class="min-w-[80px] test_arrow !h-[42px] sr_12"
-              show-search
-              required
-            >
-              <a-select-option
-                v-for="i in useTest.store.test_count"
-                :value="i"
-                >{{ i }}</a-select-option
-              >
+            {{ index + 1 }}.
+            <a-select v-model:value="useTest.test_settings.sort_level[index]"
+              class="min-w-[80px] test_arrow !h-[42px] sr_12" show-search required>
+              <a-select-option v-for="i in useTest.store.test_count" :value="i">{{ i }}</a-select-option>
               <template #suffixIcon>
                 <div class="full_flex bg-[#FFF3EB] w-[42px] !h-[42px]">
                   <img src="@/assets/svg/icon/arrow.svg" alt="" />
                 </div>
               </template>
             </a-select>
-            <p
-              @click="addTestStep('add')"
-              v-if="useTest.store.test_step == index + 1"
-              class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer"
-            >
+            <p @click="addTestStep('add')" v-if="useTest.store.test_step == index + 1"
+              class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
               <img src="@/assets/svg/icon/plus.svg" alt="" />
             </p>
-            <p
-              v-else
-              @click="addTestStep('remove', index)"
-              class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer"
-            >
+            <p v-else @click="addTestStep('remove', index)"
+              class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
               <img src="@/assets/svg/icon/minus.svg" alt="" />
             </p>
           </div>
           <div class="grid grid-cols-3">
             <div class="space-y-2">
               <label for="sortnum">Testlar soni</label>
-              <a-select
-                v-model:value="useTest.test_settings.test_count"
-                class="min-w-[80px] test_arrow !h-[42px] sr_12"
-                show-search
-                required
-              >
-                <a-select-option
-                  v-for="i in useTest.store.test_count"
-                  :value="i"
-                  >{{ i }}</a-select-option
-                >
+              <a-select v-model:value="useTest.test_settings.test_count" class="min-w-[80px] test_arrow !h-[42px] sr_12"
+                show-search required>
+                <a-select-option v-for="i in useTest.store.test_count" :value="i">{{ i }}</a-select-option>
                 <template #suffixIcon>
                   <div class="full_flex bg-[#FFF3EB] w-[42px] !h-[42px]">
                     <img src="@/assets/svg/icon/arrow.svg" alt="" />
