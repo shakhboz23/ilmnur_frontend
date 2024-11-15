@@ -41,7 +41,7 @@ export const useTestStore = defineStore("test", () => {
   const test_settings = reactive({
     start_date: "",
     end_date: "",
-    sort_level: [[]],
+    sort_level: [["Matematika", 2, 8], ["Ona tili", 2, 8]],
     test_count: "",
     period: "",
   });
@@ -274,6 +274,7 @@ export const useTestStore = defineStore("test", () => {
         console.log(err);
       }
     }
+    console.log(test)
     if (lesson_id) {
       await axios
         .post(baseUrl + `tests/create`, {

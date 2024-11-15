@@ -1,1 +1,0 @@
-import{_ as e}from"./DOrSSs2S.js";import{V as t,$ as n,ao as r}from"./Dg7Bj1Dn.js";const s={},_={class:"font-medium rounded-full h-[50px] px-9"};function c(o,a){return t(),n("button",_,[r(o.$slots,"default")])}const m=e(s,[["render",c]]);export{m as _};
