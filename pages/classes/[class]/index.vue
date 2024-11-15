@@ -45,6 +45,7 @@
             <th class="text-start font-medium _c66 px-5 py-3">№</th>
             <th class="text-start font-medium _c66 px-5 py-3">Ism</th>
             <th class="text-start font-medium _c66 px-5 py-3">Reyting</th>
+            <th class="text-start font-medium _c66 px-5 py-3">Fanlar</th>
             <th class="text-start font-medium _c66 px-5 py-3">Telefon raqam</th>
             <th class="text-start font-medium _c66 px-5 py-3">Status</th>
             <th class="text-start font-medium _c66 px-5 py-3">Yaratilgan</th>
@@ -67,6 +68,9 @@
               </div>
             </td>
             <td class="py-6 px-5">{{ i.userReyting }}</td>
+            <td class="py-6 px-5" v-if="i.subject_ball">
+              <p v-for="s in Object.keys(i.subject_ball)">{{ s }}: {{ i.subject_ball[s] }}</p>
+            </td>
             <td class="py-6 px-5">{{ i.user?.phone }}</td>
             <td class="py-6 px-5">
               <UiStatus :status="1" />

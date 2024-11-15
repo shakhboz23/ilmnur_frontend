@@ -15,6 +15,7 @@ export const useTestStore = defineStore("test", () => {
   const store = reactive({
     tests: [],
     check_result: [],
+    subject_ball: {},
     slideStepId: "",
     testResModal: false,
     testResBall: [],
@@ -40,7 +41,7 @@ export const useTestStore = defineStore("test", () => {
   const test_settings = reactive({
     start_date: "",
     end_date: "",
-    sort_level: [],
+    sort_level: [[]],
     test_count: "",
     period: "",
   });
@@ -199,6 +200,7 @@ export const useTestStore = defineStore("test", () => {
         store.slideStep = store.tests?.length;
         store.check_result = res?.data?.data?.results;
         store.testResBall = res?.data?.data?.ball;
+        store.subject_ball = res?.data?.data?.subject_ball;
         console.log(res);
         if (res.data?.data?.message == "Already added!") {
           showMessage("Reyting", "Sizning natijangiz allaqachon qo'shilgan");

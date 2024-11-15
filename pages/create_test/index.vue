@@ -227,7 +227,53 @@
         <div class="space-y-2">
           <h2>Saralash</h2>
           <label for="sortnum">Saralash bosqichi</label>
-          <div class="flex items-center gap-4" v-for="(i, index) in useTest.store.test_step">
+          <div class="space-y-4">
+            <a-select v-model:value="useTest.test_settings.sort_level[index]"
+              class="min-w-[80px] w-full test_arrow !h-[42px] sr_12" show-search required>
+              <a-select-option v-for="i in useTest.store.questions_count" :value="i">{{ i
+                }}</a-select-option>
+              <!-- <template #suffixIcon>
+                            <div class="full_flex bg-[#FFF3EB] w-[42px] !h-[42px]">
+                                <img src="@/assets/svg/icon/arrow.svg" alt="" />
+                            </div>
+                        </template> -->
+            </a-select>
+            <!-- <p @click="addTestStep('add')" v-if="useTest.store.test_step == index + 1"
+                        class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
+                        <img src="@/assets/svg/icon/plus.svg" alt="" />
+                    </p>
+                    <p v-else @click="addTestStep('remove', index)"
+                        class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
+                        <img src="@/assets/svg/icon/minus.svg" alt="" />
+                    </p> -->
+            <div class="flex items-center gap-4" v-for="(i, index) in useTest.store.test_step">
+              {{ index + 1 }}.
+              <a-select v-model:value="useTest.test_settings.sort_level[index][0]"
+                class="min-w-[80px] test_arrow w-full !h-[42px] sr_12" show-search required>
+                <a-select-option v-for="i in subjects" :value="i">{{ i
+                  }}</a-select-option>
+              </a-select>
+              <a-select v-model:value="useTest.test_settings.sort_level[index][1]"
+                class="min-w-[80px] test_arrow !h-[42px] sr_12" show-search required>
+                <a-select-option v-for="i in useTest.store.questions_count" :value="i">{{ i
+                  }}</a-select-option>
+              </a-select>
+              <a-select v-model:value="useTest.test_settings.sort_level[index][2]"
+                class="min-w-[80px] test_arrow !h-[42px] sr_12" show-search required>
+                <a-select-option v-for="i in useTest.store.questions_count" :value="i">{{ i
+                  }}</a-select-option>
+              </a-select>
+              <p @click="addTestStep('add', index)" v-if="useTest.store.test_step == index + 1"
+                class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
+                <img src="@/assets/svg/icon/plus.svg" alt="" />
+              </p>
+              <p v-else @click="addTestStep('remove', index)"
+                class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
+                <img src="@/assets/svg/icon/minus.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <!-- <div class="flex items-center gap-4" v-for="(i, index) in useTest.store.test_step">
             {{ index + 1 }}.
             <a-select v-model:value="useTest.test_settings.sort_level[index]"
               class="min-w-[80px] test_arrow !h-[42px] sr_12" show-search required>
@@ -246,7 +292,7 @@
               class="full_flex min-w-[50px] h-[50px] rounded-full border border-[#CCCCCC] cursor-pointer">
               <img src="@/assets/svg/icon/minus.svg" alt="" />
             </p>
-          </div>
+          </div> -->
           <div class="grid grid-cols-3">
             <div class="space-y-2">
               <label for="sortnum">Testlar soni</label>
@@ -301,6 +347,14 @@ const store = reactive({
   convertedContent: "",
   settings: false,
 });
+
+const subjects = [
+  "Matematika",
+  "Ingliz tili",
+  "Rus tili",
+  "Ona tili",
+  "Tarix",
+]
 const sinf = [
   {
     label: "Variantli",
@@ -339,8 +393,9 @@ const questions_count = [
 ];
 
 function addTestStep(type, index) {
+  console.log(index);
   if (type == "add") {
-    useTest.test_settings.sort_level.push([]);
+    useTest.test_settings.sort_level[index + 1] = [null, null, null];
     useTest.store.test_step += 1;
   } else {
     useTest.test_settings.sort_level.splice(index, 1);
