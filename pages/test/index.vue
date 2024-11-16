@@ -54,7 +54,7 @@
         <p class="text-red-600 sm:w-[400px] w-[80%]" v-if="useTest.store.errorMessage">
           {{ useTest.store.errorMessage }}
         </p>
-        <button class="login_btn mx-auto">Testni boshlash</button>
+        <button v-loading="isLoading.isLoadingType('checkUser')" class="login_btn mx-auto">Testni boshlash</button>
       </form>
       <div v-else>
         <nav>
@@ -241,7 +241,7 @@
               Object.keys(store.true_answers)?.length !=
               useTest.store.tests?.length
             " @click="nextStep" class="bg_orange white">Keyingisi</uiButton>
-            <uiButton :type="isLoading.isLoadingType('checkAnswers') ? 'button' : 'submit'
+            <uiButton v-loading="isLoading.isLoadingType('checkAnswers')" :type="isLoading.isLoadingType('checkAnswers') ? 'button' : 'submit'
               " v-else @click="sendAnswers" class="bg_orange white">Yakunlash</uiButton>
           </div>
           <uiButton type="button" v-if="useTest.store.isTestEnd" :class="useTest.store.testResBall[0] < 70

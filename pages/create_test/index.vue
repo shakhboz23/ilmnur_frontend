@@ -354,6 +354,8 @@ const subjects = [
   "Rus tili",
   "Ona tili",
   "Tarix",
+  "Informatika",
+  "Tabiiy fan",
 ]
 const sinf = [
   {
@@ -439,6 +441,9 @@ function htmlTableToArray(htmlTable) {
   console.log(result, "res");
   useTest.store.questions_count = result.length;
   for (let i = 0; i < result.length; i++) {
+    if (!useTest.test[i + 1]) {
+      useTest.test[i + 1] = { question: [], variant: [] };
+    }
     useTest.test[i + 1].question[0] = result[i][1];
     for (let j = 2; j < result[i]?.length; j++) {
       useTest.test[i + 1].variant[j - 1] = result[i][j];

@@ -158,6 +158,7 @@ export const useTestStore = defineStore("test", () => {
 
   function check_userApi() {
     const id = router.currentRoute.value.query.g;
+    isLoading.addLoading("checkUser");
     axios
       .post(baseUrl + `group/checkuser/${id}`, check_user)
       .then((res) => {
@@ -167,10 +168,12 @@ export const useTestStore = defineStore("test", () => {
           getTests();
         }
         store.errorMessage = "";
+        isLoading.removeLoading("checkUser");
       })
       .catch((err) => {
         console.log(err);
         store.errorMessage = err.response.data.message;
+        isLoading.removeLoading("checkUser");
       });
   }
 
